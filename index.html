@@ -690,6 +690,26 @@ form.lead .ok{background:#e8f5ec;color:#1b6b3a;border-radius:12px;padding:12px 1
 .hero{padding-bottom:32px}
 #programme{padding-top:80px}
 @media (max-width:820px){.hero{padding-bottom:28px}#programme{padding-top:56px}}
+
+/* ---------- mobile responsiveness pass ---------- */
+@media (max-width:1100px){.ftr-main{grid-template-columns:1fr;gap:40px}}
+@media (max-width:820px){
+  .ftr-main{grid-template-columns:minmax(0,1fr);gap:28px}
+  .ftr-links{grid-template-columns:minmax(0,1fr)}
+  .fcontact a{display:inline-block;padding:6px 0}
+  .lf-consent a{display:inline-block;padding:4px 0}
+  .topbar a{padding:8px 0}
+  html,body{overflow-x:hidden}
+}
+@media (max-width:820px){
+  .ftr-links{gap:0}
+  /* speakers: swipeable row instead of a long stack */
+  .spks{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:82%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -18px;padding:0 18px 4px}
+  .spks::-webkit-scrollbar{display:none}
+  .spk{scroll-snap-align:start}
+  .spk .ph{aspect-ratio:16/11}
+}
+@media (max-width:820px){.specs{grid-template-columns:minmax(0,1fr)}.spec-list,.spec-body{min-width:0}}
 .proto{background:#16141b;color:#fff;font-size:13px;text-align:center;padding:8px 16px}.proto a{color:#f4b3c0}.demo{font-size:12.5px;color:#8a5a00;background:#fff7e6;border:1px solid #f3dfb5;border-radius:10px;padding:8px 12px;margin:0}</style>
 </head>
 <body>
