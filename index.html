@@ -858,6 +858,30 @@ html.chat-online .cf-tx [data-chat-status]{color:#15803d;font-weight:600}
   .cf-badge{left:28px}
   html.has-chat .mbar .btn{width:100%}
 }
+
+/* ---------- live chat attention effects ---------- */
+#message-preview,#message-preview iframe{scale:0!important;pointer-events:none!important} /* Tawk's own preview: we show ours */
+html.has-chat .chat-fab{animation:fabIn .6s cubic-bezier(.34,1.56,.64,1) .2s both}
+@keyframes fabIn{from{opacity:0;transform:translateY(24px) scale(.85)}to{opacity:1;transform:none}}
+.chat-fab::before{content:"";position:absolute;inset:0;border-radius:999px;pointer-events:none}
+.chat-fab.nudge::before{animation:fabRing 1.4s ease-out 2}
+.chat-fab.nudge .cf-av{animation:fabWiggle 1.4s ease-in-out 1}
+@keyframes fabRing{0%{box-shadow:0 0 0 0 rgba(163,29,54,.45)}100%{box-shadow:0 0 0 16px rgba(163,29,54,0)}}
+@keyframes fabWiggle{0%,100%{transform:rotate(0)}15%{transform:rotate(-10deg)}30%{transform:rotate(8deg)}45%{transform:rotate(-5deg)}60%{transform:rotate(3deg)}}
+.chat-peek{position:relative;width:290px;background:#fff;border-radius:18px 18px 4px 18px;padding:16px 16px 14px;box-shadow:0 18px 44px -14px rgba(22,20,27,.45),0 0 0 1px rgba(22,20,27,.06);opacity:0;transform:translateY(10px) scale(.95);transform-origin:bottom right;transition:opacity .25s ease,transform .35s cubic-bezier(.34,1.56,.64,1)}
+.chat-peek.in{opacity:1;transform:none}
+.cp-x{position:absolute;top:8px;right:8px;width:26px;height:26px;border:0;border-radius:50%;background:transparent;color:var(--muted);font-size:19px;line-height:1;cursor:pointer}
+.cp-x:hover{background:var(--card)}
+.cp-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cp-head img{width:34px;height:34px;border-radius:50%;object-fit:cover}
+.cp-head b{display:block;font-size:14.5px;color:var(--ink)}
+.cp-head span{display:block;font-size:12px;color:var(--muted)}
+.cp-head i{font-style:normal;color:#15803d;font-weight:600}
+.chat-peek p{font-size:14.5px;line-height:1.45;color:var(--ink-2);margin:0 0 12px}
+.cp-go{width:100%;height:40px;border:0;border-radius:10px;background:var(--brand);color:#fff;font:600 14.5px/1 var(--sans);cursor:pointer}
+.cp-go:hover{background:var(--brand-2)}
+@media (max-width:820px){.chat-peek{width:min(290px,calc(100vw - 28px))}}
+@media (prefers-reduced-motion:reduce){html.has-chat .chat-fab,.chat-fab.nudge::before,.chat-fab.nudge .cf-av{animation:none}.chat-peek{transition:none}}
 .proto{background:#16141b;color:#fff;font-size:13px;text-align:center;padding:8px 16px}.proto a{color:#f4b3c0}.demo{font-size:12.5px;color:#8a5a00;background:#fff7e6;border:1px solid #f3dfb5;border-radius:10px;padding:8px 12px;margin:0}</style>
 </head>
 <body>
@@ -1102,6 +1126,12 @@ html.chat-online .cf-tx [data-chat-status]{color:#15803d;font-weight:600}
 </footer>
 
 <div class="chat-fab-wrap">
+  <div class="chat-peek" role="dialog" aria-label="Message from an admissions advisor" hidden>
+    <button class="cp-x" type="button" aria-label="Dismiss">×</button>
+    <div class="cp-head"><img decoding="async" data-agent-img src="https://tawk.link/619f1ff26bb0760a49444666/var/trigger-images/def0a0972f42cae102cb8f9bc19b34f4f1e371ee.jpg" alt="" width="34" height="34"><div><b data-agent-name>Sneha</b><span>Admissions advisor · <i>Online</i></span></div></div>
+    <p>Hi 👋 Have questions about fees, EMI or eligibility? Chat with me, I'm happy to help.</p>
+    <button class="cp-go" type="button" data-chat>Chat now</button>
+  </div>
   <button class="chat-fab" type="button" data-chat aria-label="Live chat with an admissions advisor">
     <span class="cf-av"><img decoding="async" data-agent-img src="https://tawk.link/619f1ff26bb0760a49444666/var/trigger-images/def0a0972f42cae102cb8f9bc19b34f4f1e371ee.jpg" alt="" width="44" height="44"><i class="cf-dot"></i></span>
     <span class="cf-tx"><b>Live chat<span class="cf-full"> with <span data-agent-name>Sneha</span></span></b><small>Admissions advisor · <span data-chat-status>Online now</span></small></span>
@@ -1254,15 +1284,36 @@ html.chat-online .cf-tx [data-chat-status]{color:#15803d;font-weight:600}
 /* Tawk.to live chat: same widget as dypatiledu.com/online-mba. Loaded after the page so it doesn't delay first paint. */
 var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();
 Tawk_API.customStyle={visibility:{desktop:{position:'br',xOffset:24,yOffset:16},mobile:{position:'br',xOffset:12,yOffset:12}}};
+/* ---- attention effects: entrance, one-time message peek, gentle nudges (stop once the visitor engages) ---- */
+var chatOpened=false,nudges=0,nudgeT=null,peekT=null;
+function ss(k,v){try{if(v===undefined)return sessionStorage.getItem(k);sessionStorage.setItem(k,v);}catch(_){return null;}}
+function peek(){return document.querySelector('.chat-peek');}
+function hidePeek(){var p=peek();if(p&&!p.hidden){p.classList.remove('in');setTimeout(function(){p.hidden=true;},250);}}
+function setBadge(n){document.querySelectorAll('[data-chat-badge]').forEach(function(x){x.hidden=!(n>0);x.textContent=n>9?'9+':n;});}
+function chatEngaged(){chatOpened=true;ss('chatOpened','1');hidePeek();setBadge(0);clearInterval(nudgeT);}
+function nudge(){var f=document.querySelector('.chat-fab');if(!f||chatOpened)return;f.classList.remove('nudge');void f.offsetWidth;f.classList.add('nudge');}
+function startEffects(){
+  var root=document.documentElement;if(ss('chatOpened'))chatOpened=true;
+  if(chatOpened)return;
+  nudgeT=setInterval(function(){if(++nudges>3||chatOpened){clearInterval(nudgeT);return;}if(!document.querySelector('dialog[open]'))nudge();},20000);
+  if(ss('chatPeek'))return;
+  peekT=setTimeout(function(){
+    if(chatOpened||!root.classList.contains('chat-online')||document.querySelector('dialog[open]'))return;
+    var p=peek();if(!p)return;ss('chatPeek','1');p.hidden=false;requestAnimationFrame(function(){p.classList.add('in');});setBadge(1);nudge();
+    setTimeout(hidePeek,15000);
+  },8000);
+}
+document.addEventListener('click',function(e){if(e.target.closest('.cp-x')){e.stopPropagation();hidePeek();}else if(e.target.closest('[data-chat]'))chatEngaged();},true);
 function chatUI(){var on=document.documentElement.classList.contains('chat-online');
   document.querySelectorAll('[data-chat-status]').forEach(function(x){x.textContent=on?'Online now':'Leave a message';});}
 function agentFromWidget(){ /* read the agent photo DY Patil configured in Tawk, so our launcher matches the chat window */
   document.querySelectorAll('iframe').forEach(function(f){try{var d=f.contentDocument,im=d&&d.querySelector('img[alt="Agent profile image"]');
     if(im&&im.src&&/\.(jpe?g|png|webp)(\?|$)/i.test(im.src)&&!/profile\.svg|default/i.test(im.src))document.querySelectorAll('[data-agent-img]').forEach(function(x){if(x.src!==im.src)x.src=im.src;});}catch(_){}});}
-Tawk_API.onLoad=function(){document.documentElement.classList.add('has-chat');if(Tawk_API.getStatus)document.documentElement.classList.toggle('chat-online',Tawk_API.getStatus()==='online');chatUI();agentFromWidget();setTimeout(agentFromWidget,3000);};
+Tawk_API.onLoad=function(){document.documentElement.classList.add('has-chat');startEffects();if(Tawk_API.getStatus)document.documentElement.classList.toggle('chat-online',Tawk_API.getStatus()==='online');chatUI();agentFromWidget();setTimeout(agentFromWidget,3000);};
 Tawk_API.onStatusChange=function(st){document.documentElement.classList.toggle('chat-online',st==='online');chatUI();};
 Tawk_API.onAgentJoinChat=function(a){if(!a)return;if(a.name)document.querySelectorAll('[data-agent-name]').forEach(function(x){x.textContent=String(a.name).split(' ')[0];});
   if(a.image&&!/\.svg(\?|$)/i.test(a.image))document.querySelectorAll('[data-agent-img]').forEach(function(x){x.src=a.image;});};
+Tawk_API.onChatMaximized=function(){chatEngaged();};
 Tawk_API.onUnreadCountChanged=function(n){document.querySelectorAll('[data-chat-badge]').forEach(function(x){x.hidden=!(n>0);x.textContent=n>9?'9+':n;});};
 document.addEventListener('click',function(e){var b=e.target.closest('[data-chat]');if(!b)return;if(window.Tawk_API&&Tawk_API.maximize){Tawk_API.maximize();try{(window.dataLayer=window.dataLayer||[]).push({event:'cro_click',cro_cta:'chat_mbar'});}catch(_){}}});
 window.addEventListener('load',function(){setTimeout(function(){var s=document.createElement('script');s.async=true;
