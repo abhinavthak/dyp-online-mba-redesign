@@ -710,6 +710,20 @@ form.lead .ok{background:#e8f5ec;color:#1b6b3a;border-radius:12px;padding:12px 1
   .spk .ph{aspect-ratio:16/11}
 }
 @media (max-width:820px){.specs{grid-template-columns:minmax(0,1fr)}.spec-list,.spec-body{min-width:0}}
+
+/* ---------- mobile: bottom bar + spacing above section CTAs ---------- */
+@media (max-width:820px){
+  .mbar{border-radius:18px 18px 0 0;box-shadow:0 -8px 24px -12px rgba(22,20,27,.28)}
+  .mbar .mbar-in{padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));gap:10px}
+  .mbar .btn{height:50px;font-size:16px;border-radius:14px}
+  .mbar.hold{transform:translateY(110%)!important;visibility:hidden!important}
+  .sec-cta{margin-top:40px;padding:22px 20px}
+  .sec-cta p{font-size:16px;line-height:1.45;margin-bottom:4px}
+  .sec-cta .acts{gap:10px}
+  .sec-cta.left{margin-top:32px}
+  .sec-cta.in-box{margin-top:24px;padding-top:20px}
+  .narrow .sec-cta{margin-top:36px}
+}
 .proto{background:#16141b;color:#fff;font-size:13px;text-align:center;padding:8px 16px}.proto a{color:#f4b3c0}.demo{font-size:12.5px;color:#8a5a00;background:#fff7e6;border:1px solid #f3dfb5;border-radius:10px;padding:8px 12px;margin:0}</style>
 </head>
 <body>
@@ -1017,6 +1031,14 @@ form.lead .ok{background:#e8f5ec;color:#1b6b3a;border-radius:12px;padding:12px 1
   function fsync(){$$('.fcol').forEach(function(d){d.open=!fq.matches;});}
   fsync();if(fq.addEventListener)fq.addEventListener('change',fsync);
   $$('.fcol summary').forEach(function(sm){sm.addEventListener('click',function(e){if(!fq.matches)e.preventDefault();});});
+
+  // phones: hide the sticky bar while an on-page Apply/enquiry button is already on screen (avoids a double "Apply Now")
+  if('IntersectionObserver' in window&&mbar){
+    var vis=new Set(),mq=window.matchMedia('(max-width:820px)');
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)vis.add(en.target);else vis.delete(en.target);});
+      mbar.classList.toggle('hold',mq.matches&&vis.size>0);},{rootMargin:'0px 0px -60px 0px'});
+    $$('.sec-cta,.hero-form,.fee-cta,.spec-panel .btn').forEach(function(el){io.observe(el);});
+  }
 
   // track simple link CTAs (e.g. brochure download)
   $$('[data-track]').forEach(function(a){a.addEventListener('click',function(){track(a.getAttribute('data-track'));});});
