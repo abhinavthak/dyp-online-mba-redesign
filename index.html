@@ -828,6 +828,12 @@ html.chat-online .cf-tx [data-chat-status]{color:#15803d;font-weight:600}
   .mbar-chat > .ic{display:none}
 }
 @media (prefers-reduced-motion:reduce){.cf-dot::after{animation:none}.chat-hello{animation:none}}
+/* live-chat launcher: explicit wording + chat action */
+.chat-fab{padding:7px 7px 7px 7px;gap:12px}
+.cf-tx b{font-size:15.5px}
+.cf-go{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--brand);color:#fff;flex:none;margin-left:6px}
+.cf-go .ic{width:21px;height:21px}
+.chat-fab:hover .cf-go{background:var(--brand-2)}
 .proto{background:#16141b;color:#fff;font-size:13px;text-align:center;padding:8px 16px}.proto a{color:#f4b3c0}.demo{font-size:12.5px;color:#8a5a00;background:#fff7e6;border:1px solid #f3dfb5;border-radius:10px;padding:8px 12px;margin:0}</style>
 </head>
 <body>
@@ -1074,7 +1080,8 @@ html.chat-online .cf-tx [data-chat-status]{color:#15803d;font-weight:600}
 <div class="chat-fab-wrap">
   <button class="chat-fab" type="button" data-chat aria-label="Live chat with an admissions advisor">
     <span class="cf-av"><img decoding="async" data-agent-img src="https://tawk.link/619f1ff26bb0760a49444666/var/trigger-images/def0a0972f42cae102cb8f9bc19b34f4f1e371ee.jpg" alt="" width="44" height="44"><i class="cf-dot"></i></span>
-    <span class="cf-tx"><b data-agent-name>Sneha</b><small>Admissions advisor · <span data-chat-status>Online now</span></small></span>
+    <span class="cf-tx"><b>Live chat with <span data-agent-name>Sneha</span></b><small>Admissions advisor · <span data-chat-status>Online now</span></small></span>
+    <span class="cf-go" aria-hidden="true"><svg viewBox="0 0 24 24" class="ic fill"><path d="M12 3C6.5 3 2 6.9 2 11.7c0 2.4 1.1 4.6 3 6.2L4.3 21.4a.6.6 0 0 0 .8.7l4.1-1.7c.9.2 1.8.3 2.8.3 5.5 0 10-3.9 10-8.7S17.5 3 12 3Zm-4.5 10a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm4.5 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Zm4.5 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6Z"/></svg></span>
     <span class="cf-badge" data-chat-badge hidden></span>
   </button>
 </div>
@@ -1217,11 +1224,11 @@ function chatUI(){var on=document.documentElement.classList.contains('chat-onlin
   document.querySelectorAll('[data-chat-status]').forEach(function(x){x.textContent=on?'Online now':'Leave a message';});}
 function agentFromWidget(){ /* read the agent photo DY Patil configured in Tawk, so our launcher matches the chat window */
   document.querySelectorAll('iframe').forEach(function(f){try{var d=f.contentDocument,im=d&&d.querySelector('img[alt="Agent profile image"]');
-    if(im&&im.src)document.querySelectorAll('[data-agent-img]').forEach(function(x){if(x.src!==im.src)x.src=im.src;});}catch(_){}});}
+    if(im&&im.src&&/\.(jpe?g|png|webp)(\?|$)/i.test(im.src)&&!/profile\.svg|default/i.test(im.src))document.querySelectorAll('[data-agent-img]').forEach(function(x){if(x.src!==im.src)x.src=im.src;});}catch(_){}});}
 Tawk_API.onLoad=function(){document.documentElement.classList.add('has-chat');if(Tawk_API.getStatus)document.documentElement.classList.toggle('chat-online',Tawk_API.getStatus()==='online');chatUI();agentFromWidget();setTimeout(agentFromWidget,3000);};
 Tawk_API.onStatusChange=function(st){document.documentElement.classList.toggle('chat-online',st==='online');chatUI();};
 Tawk_API.onAgentJoinChat=function(a){if(!a)return;if(a.name)document.querySelectorAll('[data-agent-name]').forEach(function(x){x.textContent=String(a.name).split(' ')[0];});
-  if(a.image)document.querySelectorAll('[data-agent-img]').forEach(function(x){x.src=a.image;});};
+  if(a.image&&!/\.svg(\?|$)/i.test(a.image))document.querySelectorAll('[data-agent-img]').forEach(function(x){x.src=a.image;});};
 Tawk_API.onUnreadCountChanged=function(n){document.querySelectorAll('[data-chat-badge]').forEach(function(x){x.hidden=!(n>0);x.textContent=n>9?'9+':n;});};
 document.addEventListener('click',function(e){var b=e.target.closest('[data-chat]');if(!b)return;if(window.Tawk_API&&Tawk_API.maximize){Tawk_API.maximize();try{(window.dataLayer=window.dataLayer||[]).push({event:'cro_click',cro_cta:'chat_mbar'});}catch(_){}}});
 window.addEventListener('load',function(){setTimeout(function(){var s=document.createElement('script');s.async=true;
