@@ -578,6 +578,114 @@ form.lead .ok{background:#e8f5ec;color:#1b6b3a;border-radius:12px;padding:12px 1
 .hero .hero-tx .sub{max-width:640px;font-size:19px}
 @media (max-width:1100px){.hero-in{grid-template-columns:minmax(0,1fr) 380px;gap:40px}}
 @media (max-width:820px){.hero-in{grid-template-columns:1fr;gap:28px}.hero .hero-tx .sub{font-size:16.5px}}
+
+/* ---------- hero copy block (restructured) ---------- */
+.hero h1{margin:20px 0 16px}
+.hero h1 .hl{display:inline-block}
+.h1-sub{display:block;margin-top:10px;font-size:.46em;font-weight:500;letter-spacing:-.012em;line-height:1.2;color:rgba(255,255,255,.9)}
+.hero .hero-tx .sub{font-size:18px;max-width:560px}
+.hero-pts{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:11px}
+.hero-pts li{display:flex;align-items:center;gap:11px;font-size:16px;color:#fff}
+.hero-pts .ic{width:24px;height:24px;padding:5px;border-radius:50%;background:rgba(255,255,255,.14);color:#f6c1cb;flex:none;stroke-width:2.6}
+.trust-bar{display:inline-flex;align-items:center;margin:26px 0 28px;padding:8px 4px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.trust-bar>div{display:flex;align-items:center;gap:9px;padding:2px 16px;border-left:1px solid rgba(255,255,255,.18);font-size:14px;font-weight:500;color:#fff;white-space:nowrap}
+.trust-bar>div:first-child{border-left:0}
+.trust-bar img{width:30px;height:30px;object-fit:contain;background:#fff;border-radius:8px;padding:3px}
+@media (max-width:820px){
+  .h1-sub{font-size:.52em;margin-top:8px}
+  .hero .hero-tx .sub{font-size:16px}
+  .hero-pts li{font-size:15px}
+  .trust-bar{display:grid;grid-template-columns:repeat(3,1fr);width:100%;padding:10px 4px;margin:22px 0 4px}
+  .trust-bar>div{flex-direction:column;gap:6px;padding:2px 6px;font-size:12px;text-align:center;white-space:normal}
+}
+
+/* ---------- first fold: key facts visible without scrolling ---------- */
+.hero{padding-top:28px}
+.hero h1{margin:14px 0 12px}
+.hero .kicker{padding:6px 14px 6px 10px}
+.hero-pts{margin-top:16px;gap:8px}
+.trust-bar{margin:18px 0 20px}
+.hero .ctas .btn.lg{height:50px}
+.facts{margin:22px 0 0;top:0}
+.facts>div{padding:14px 24px}
+.facts dt{margin-bottom:6px}
+.facts dd{font-size:21px}
+/* compact form in the hero only */
+.hero-form .lf-h{padding:18px 22px 10px}
+.hero-form .lf-h h3{font-size:20px}
+.hero-form .lf-form{gap:8px;padding:0 22px 14px}
+.hero-form .lf-fields{gap:8px}
+.hero-form .lf-form input,.hero-form .lf-form select,.hero-form .lf-tel{height:38px}
+.hero-form .lf-help{margin:-3px 2px 0}
+.hero-form .lf-btn{height:42px;margin-top:4px}
+.hero-form .lf-trust{padding:9px 14px}
+#programme{padding-top:96px}
+/* phones: compact swipeable facts row right under the subtitle */
+.facts-m{display:none}
+@media (max-width:820px){
+  .hero .facts{display:none}
+  .facts-m{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:16px -18px 0;padding:0 18px 2px}
+  .facts-m::-webkit-scrollbar{display:none}
+  .facts-m>div{flex:none;padding:9px 13px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)}
+  .facts-m dt{font:600 10px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:5px}
+  .facts-m dd{margin:0;font:600 15px/1.1 var(--sans);color:#fff;white-space:nowrap}
+  .facts-m>div:last-child dd{color:#f6c1cb}
+  #programme{padding-top:64px}
+}
+/* keep the swipeable facts row from widening the hero column */
+.hero-tx{min-width:0}
+@media (max-width:820px){.hero-in{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- footer (restructured) ---------- */
+.ftr{padding:72px 0 0}
+.ftr-main{display:grid;grid-template-columns:minmax(260px,1.35fr) 3.65fr;gap:56px;padding-bottom:48px}
+.ftr-brand .flogo{height:54px;margin-bottom:18px}
+.fdesc{color:rgba(255,255,255,.72);font-size:14.5px;line-height:1.6;max-width:330px}
+.fcontact{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.fcontact li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:rgba(255,255,255,.8)}
+.fcontact .ic{width:17px;height:17px;color:#f4b3c0;margin-top:2px}
+.fcontact a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+.fcontact a:hover{border-color:#fff}
+.ftr .fcta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+.ftr .fcta .btn{height:44px}
+.ftr .fcta .btn.brochure{background:#fff;border-color:#fff}
+.ftr-links{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px}
+.fcol summary{list-style:none;display:flex;align-items:center;justify-content:space-between;cursor:default;margin-bottom:14px}
+.fcol summary::-webkit-details-marker{display:none}
+.fcol summary .ic{display:none;width:18px;height:18px;color:rgba(255,255,255,.6);transition:transform .2s}
+.fcol h4{margin:0;color:#fff;font:600 13px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase}
+.fcol ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.fcol a{color:rgba(255,255,255,.68);text-decoration:none;font-size:14px;line-height:1.4}
+.fcol a:hover{color:#fff}
+.ftr-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.12);padding:22px 0 28px;font-size:13px;color:rgba(255,255,255,.55)}
+.flegal{list-style:none;display:flex;flex-wrap:wrap;gap:6px 20px;padding:0;margin:0}
+.flegal a{color:rgba(255,255,255,.75);text-decoration:none}
+.flegal a:hover{color:#fff}
+.fdisc{width:100%;font-size:12px;color:rgba(255,255,255,.4)}
+@media (max-width:1100px){.ftr-main{grid-template-columns:1fr;gap:40px}.ftr-links{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:820px){
+  .ftr{padding-top:52px}
+  .ftr-main{gap:28px;padding-bottom:20px}
+  .ftr-links{grid-template-columns:1fr;gap:0}
+  .fcol{border-top:1px solid rgba(255,255,255,.12)}
+  .fcol:last-child{border-bottom:1px solid rgba(255,255,255,.12)}
+  .fcol summary{cursor:pointer;margin:0;padding:16px 0}
+  .fcol summary .ic{display:block}
+  .fcol[open] summary .ic{transform:rotate(180deg)}
+  .fcol ul{padding:0 0 16px}
+  .ftr .fcta .btn{flex:1 1 auto}
+  .ftr-bottom{flex-direction:column;align-items:flex-start;padding-bottom:96px}
+}
+
+/* ---------- footer fixes ---------- */
+.ftr .wrap{max-width:1360px}
+.ftr-main{grid-template-columns:minmax(260px,1fr) 3.4fr;gap:64px}
+.ftr-links{grid-template-columns:.75fr 1.25fr 1.05fr .9fr 1.15fr;gap:32px}
+.ftr .flegal{display:flex;flex-wrap:wrap;gap:6px 22px}
+@media (max-width:1100px){.ftr-links{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:820px){.ftr-links{grid-template-columns:1fr}}
+/* leave room for the sticky apply bar at the very bottom */
+.ftr-bottom{padding-bottom:96px}
 .proto{background:#16141b;color:#fff;font-size:13px;text-align:center;padding:8px 16px}.proto a{color:#f4b3c0}.demo{font-size:12.5px;color:#8a5a00;background:#fff7e6;border:1px solid #f3dfb5;border-radius:10px;padding:8px 12px;margin:0}</style>
 </head>
 <body>
@@ -610,9 +718,11 @@ form.lead .ok{background:#e8f5ec;color:#1b6b3a;border-radius:12px;padding:12px 1
   <div class="wrap hero-in">
     <div class="hero-tx">
       <p class="kicker"><i></i>Data-Driven Decision-Making Module by PwC Academy</p>
-      <h1><span class="hl">Online MBA<svg class="ellipse" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M282 34C268 12 196 6 132 9 62 12 12 30 14 56c2 26 62 38 140 36 72-2 130-18 134-42 2-14-12-26-38-32"/></svg></span> from DY Patil University</h1>
-      <p class="sub">Master of Business Administration — a two-year, UGC-entitled online degree with 11 specialisations and an industry module by PwC Academy.</p>
-      <div class="badges"><div class="badge"><img src="assets/img/UGC_India_Logo__3__1774870407384_2c0ab09511d956a1.webp" alt="" width="34" height="34"><span>Entitled by UGC</span></div><div class="badge"><img src="assets/img/AICTE__3__1774870412294_da2970707d08b046.webp" alt="" width="34" height="34"><span>Approved by AICTE</span></div><div class="badge"><img src="assets/img/NAAC_A_1774870418254_733e73d0ed44fa7f.webp" alt="" width="34" height="34"><span>NAAC A++ Accredited</span></div></div>
+      <h1><span class="hl">Online MBA<svg class="ellipse" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true"><path d="M282 34C268 12 196 6 132 9 62 12 12 30 14 56c2 26 62 38 140 36 72-2 130-18 134-42 2-14-12-26-38-32"/></svg></span><span class="h1-sub">from DY Patil University</span></h1>
+      <p class="sub">A 2-year, UGC-entitled Master of Business Administration you can complete 100% online.</p>
+      <dl class="facts-m" aria-label="Key facts"><div><dt>Duration</dt><dd>24 months</dd></div><div><dt>Per semester</dt><dd>₹45,000*</dd></div><div><dt>Total fee</dt><dd>₹1,75,000</dd></div><div><dt>Mode</dt><dd>100% online</dd></div><div><dt>Payment</dt><dd>No-cost EMI</dd></div></dl>
+      <ul class="hero-pts"><li><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>11 specialisations — from Product Management to Fintech</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Live online classes and recorded lectures</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>No-cost EMI on the ₹1,75,000 total fee</span></li></ul>
+      <div class="trust-bar"><div><img src="assets/img/UGC_India_Logo__3__1774870407384_2c0ab09511d956a1.webp" alt="" width="30" height="30"><span>UGC-entitled</span></div><div><img src="assets/img/AICTE__3__1774870412294_da2970707d08b046.webp" alt="" width="30" height="30"><span>AICTE approved</span></div><div><img src="assets/img/NAAC_A_1774870418254_733e73d0ed44fa7f.webp" alt="" width="30" height="30"><span>NAAC A++</span></div></div>
       <div class="ctas"><a class="btn lg brochure solid" href="https://pages.dypatiledu.com/MBA__3__1782971877012_2dcb5af9c28781b9.pdf" target="_blank" rel="noopener" data-track="brochure_hero"><span class="dl"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg></span>Download brochure</a><a class="btn ghost lg" href="tel:+918956983919"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> +91 89569 83919</a></div>
     </div>
     <div class="hero-form" id="enquire"><div class="lf">
@@ -795,9 +905,24 @@ form.lead .ok{background:#e8f5ec;color:#1b6b3a;border-radius:12px;padding:12px 1
 
 <footer class="ftr">
   <div class="wrap">
-    <div class="ftr-top"><img src="assets/img/dyp-online-logo__1__1771588255684_424fe95cea0dedb5.webp" alt="DY Patil University Online" class="flogo"><div class="fcta"><a class="btn" href="#enquire" data-open-form="footer">Apply Now</a><a class="btn ghost light" href="tel:+918956983919"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> +91 89569 83919</a></div></div>
-    <div class="fcols"><div><h4>About Us</h4><ul><li><a href="https://www.dypatiledu.com/about-us">About DYPU</a></li><li><a href="https://dypatiluniversityonline.com/pdf/compliance_of_mandatory_disclosure.pdf#toolbar=0">Mandatory Disclosure</a></li><li><a href="https://www.dypatiledu.com/dyp-privacy-policy">Privacy Policy</a></li></ul></div><div><h4>Online Programs</h4><ul><li><a href="https://www.dypatiledu.com/online-bba">BBA</a></li><li><a href="https://www.dypatiledu.com/online-mba">MBA</a></li><li><a href="https://www.dypatiledu.com/online-bca">BCA</a></li><li><a href="https://www.dypatiledu.com/online-mca">MCA</a></li><li><a href="https://www.dypatiledu.com/mba-plus">MBA Plus</a></li><li><a href="https://www.dypatiledu.com/bba-plus">BBA Plus</a></li></ul></div><div><h4>Academics</h4><ul><li><a href="https://www.dypatiledu.com/teaching-methodology">Teaching Methodology</a></li><li><a href="https://www.dypatiledu.com/examination">Examination &amp; Evaluation</a></li><li><a href="https://lms.dypatiledu.com/login">LMS</a></li><li><a href="https://www.dypatiledu.com/myaccount/">Myaccount</a></li><li><a href="https://cdn-websites.lmscontent.in/DYPATIL/www/wwwroot/dypatiledu.com/assets/pdf/Student-Advisory.pdf">Student Advisory</a></li><li><a href="https://www.dypatiledu.com/live-lecture">Live Lecture</a></li></ul></div><div><h4>Admissions</h4><ul><li><a href="https://www.dypatiledu.com/admission-policy">Admission Policy</a></li><li><a href="https://www.dypatiledu.com/admission-process">Admission Process</a></li><li><a href="https://www.dypatiledu.com/dypStudentLogin/login">Admission Portal</a></li><li><a href="https://cdn-websites.lmscontent.in/DYPATIL/www/wwwroot/dypatiledu.com/assets/pdf/DyPatil-Liquiloan-Cancellation-Form.pdf">Liquiloan Cancellation Form</a></li><li><a href="https://cdn-websites.lmscontent.in/DYPATIL/www/wwwroot/dypatiledu.com/assets/pdf/DPU-Self-Paid-Cancellation-Form.pdf">Self-Paid Cancellation Form</a></li><li><a href="https://cdn-websites.lmscontent.in/DYPATIL/www/wwwroot/dypatiledu.com/assets/pdf/DyPatil-Early-Salary-Cancellation-Form.pdf">Early Salary Cancellation Form</a></li><li><a href="https://cdn-websites.lmscontent.in/DYPATIL/www/wwwroot/dypatiledu.com/assets/pdf/DYP%20Propelled%20Cancellation%20Form.pdf">Propelled Cancellation Form</a></li></ul></div><div><h4>BBA Specialisation</h4><ul><li><a href="https://www.dypatiledu.com/online-bba/logistics-and-supply-chain">BBA in Logistics &amp; Supply Chain</a></li><li><a href="https://www.dypatiledu.com/online-bba/marketing-management">BBA in Marketing Management</a></li><li><a href="https://www.dypatiledu.com/online-bba/event-management">BBA in Event Management</a></li><li><a href="https://www.dypatiledu.com/online-bba/human-resources">BBA in Human Resources</a></li><li><a href="https://www.dypatiledu.com/online-bba/retail-operations">BBA in Retail Operations</a></li><li><a href="https://www.dypatiledu.com/online-bba/hospital-management">BBA in Hospital Management</a></li><li><a href="https://www.dypatiledu.com/online-bba/investment-banking">BBA in Investment Banking</a></li></ul></div><div><h4>MBA Specialisation</h4><ul><li><a href="https://www.dypatiledu.com/online-mba/marketing-and-sales-management">MBA in Marketing &amp; Sales Management</a></li><li><a href="https://www.dypatiledu.com/online-mba/data-science-and-business-analytics">MBA in Data Science &amp; Business Analytics</a></li><li><a href="https://www.dypatiledu.com/online-mba/digital-marketing">MBA in Digital Marketing &amp; AI</a></li><li><a href="https://www.dypatiledu.com/online-mba/human-resource-management-and-people-analytics">MBA in HRM &amp; People Analytics</a></li><li><a href="https://www.dypatiledu.com/online-mba/hospital-and-healthcare-management">MBA in Hospital &amp; Healthcare Management</a></li><li><a href="https://www.dypatiledu.com/online-mba/finance">MBA in Finance</a></li><li><a href="https://www.dypatiledu.com/online-mba/e-commerce-and-retail-management">MBA in E-commerce &amp; Retail Management</a></li><li><a href="https://www.dypatiledu.com/online-mba/operations-and-supply-chain-management">MBA in Operations &amp; Supply Chain Management</a></li><li><a href="https://www.dypatiledu.com/online-mba/product-management">MBA in Product Management</a></li><li><a href="https://www.dypatiledu.com/online-mba/fintech-and-digital-banking">MBA in Fintech &amp; Digital Banking</a></li><li><a href="https://www.dypatiledu.com/online-mba/entrepreneurship-and-venture-strategy">MBA in Entrepreneurship &amp; Venture Strategy</a></li></ul></div><div><h4>Contact us</h4><p>D Y Patil Deemed to be University Sector 7, Nerul, Navi Mumbai: 400706</p><p>Phone: +91 8956983919</p><p>Admission: admission@dypatiledu.com</p></div></div>
-    <p class="copy">© 2026 D Y Patil University. All rights reserved. dypatiledu.com is owned by dypatil.edu</p>
+    <div class="ftr-main">
+      <div class="ftr-brand">
+        <img src="assets/img/dyp-online-logo__1__1771588255684_424fe95cea0dedb5.webp" alt="DY Patil University Online" class="flogo">
+        <p class="fdesc">Online degrees from D Y Patil Deemed to be University, Navi Mumbai — NAAC A++ accredited and UGC-entitled.</p>
+        <ul class="fcontact">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>D Y Patil Deemed to be University, Sector 7, Nerul, Navi Mumbai 400706</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+918956983919">+91 89569 83919</a></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><a href="mailto:admission@dypatiledu.com">admission@dypatiledu.com</a></li>
+        </ul>
+        <div class="fcta"><a class="btn" href="#enquire" data-open-form="footer">Apply Now <svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn brochure" href="https://pages.dypatiledu.com/MBA__3__1782971877012_2dcb5af9c28781b9.pdf" target="_blank" rel="noopener" data-track="brochure_footer"><span class="dl"><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg></span>Brochure</a></div>
+      </div>
+      <nav class="ftr-links" aria-label="Footer"><details class="fcol" open><summary><h4>Programmes</h4><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary><ul><li><a href="https://www.dypatiledu.com/online-bba">BBA</a></li><li><a href="https://www.dypatiledu.com/online-mba">MBA</a></li><li><a href="https://www.dypatiledu.com/online-bca">BCA</a></li><li><a href="https://www.dypatiledu.com/online-mca">MCA</a></li><li><a href="https://www.dypatiledu.com/mba-plus">MBA Plus</a></li><li><a href="https://www.dypatiledu.com/bba-plus">BBA Plus</a></li></ul></details><details class="fcol" open><summary><h4>MBA specialisations</h4><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary><ul><li><a href="https://www.dypatiledu.com/online-mba/marketing-and-sales-management">Marketing &amp; Sales Management</a></li><li><a href="https://www.dypatiledu.com/online-mba/data-science-and-business-analytics">Data Science &amp; Business Analytics</a></li><li><a href="https://www.dypatiledu.com/online-mba/digital-marketing">Digital Marketing &amp; AI</a></li><li><a href="https://www.dypatiledu.com/online-mba/human-resource-management-and-people-analytics">HRM &amp; People Analytics</a></li><li><a href="https://www.dypatiledu.com/online-mba/hospital-and-healthcare-management">Hospital &amp; Healthcare Management</a></li><li><a href="https://www.dypatiledu.com/online-mba/finance">Finance</a></li><li><a href="https://www.dypatiledu.com/online-mba/e-commerce-and-retail-management">E-commerce &amp; Retail Management</a></li><li><a href="https://www.dypatiledu.com/online-mba/operations-and-supply-chain-management">Operations &amp; Supply Chain Management</a></li><li><a href="https://www.dypatiledu.com/online-mba/product-management">Product Management</a></li><li><a href="https://www.dypatiledu.com/online-mba/fintech-and-digital-banking">Fintech &amp; Digital Banking</a></li><li><a href="https://www.dypatiledu.com/online-mba/entrepreneurship-and-venture-strategy">Entrepreneurship &amp; Venture Strategy</a></li></ul></details><details class="fcol" open><summary><h4>BBA specialisations</h4><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary><ul><li><a href="https://www.dypatiledu.com/online-bba/logistics-and-supply-chain">Logistics &amp; Supply Chain</a></li><li><a href="https://www.dypatiledu.com/online-bba/marketing-management">Marketing Management</a></li><li><a href="https://www.dypatiledu.com/online-bba/event-management">Event Management</a></li><li><a href="https://www.dypatiledu.com/online-bba/human-resources">Human Resources</a></li><li><a href="https://www.dypatiledu.com/online-bba/retail-operations">Retail Operations</a></li><li><a href="https://www.dypatiledu.com/online-bba/hospital-management">Hospital Management</a></li><li><a href="https://www.dypatiledu.com/online-bba/investment-banking">Investment Banking</a></li></ul></details><details class="fcol" open><summary><h4>Academics</h4><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary><ul><li><a href="https://www.dypatiledu.com/teaching-methodology">Teaching Methodology</a></li><li><a href="https://www.dypatiledu.com/examination">Examination &amp; Evaluation</a></li><li><a href="https://lms.dypatiledu.com/login">LMS</a></li><li><a href="https://www.dypatiledu.com/myaccount/">Myaccount</a></li><li><a href="https://cdn-websites.lmscontent.in/DYPATIL/www/wwwroot/dypatiledu.com/assets/pdf/Student-Advisory.pdf">Student Advisory</a></li><li><a href="https://www.dypatiledu.com/live-lecture">Live Lecture</a></li></ul></details><details class="fcol" open><summary><h4>Admissions</h4><svg viewBox="0 0 24 24" aria-hidden="true" class="ic" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary><ul><li><a href="https://www.dypatiledu.com/admission-policy">Admission Policy</a></li><li><a href="https://www.dypatiledu.com/admission-process">Admission Process</a></li><li><a href="https://www.dypatiledu.com/dypStudentLogin/login">Admission Portal</a></li><li><a href="https://cdn-websites.lmscontent.in/DYPATIL/www/wwwroot/dypatiledu.com/assets/pdf/DyPatil-Liquiloan-Cancellation-Form.pdf">Liquiloan Cancellation Form</a></li><li><a href="https://cdn-websites.lmscontent.in/DYPATIL/www/wwwroot/dypatiledu.com/assets/pdf/DPU-Self-Paid-Cancellation-Form.pdf">Self-Paid Cancellation Form</a></li><li><a href="https://cdn-websites.lmscontent.in/DYPATIL/www/wwwroot/dypatiledu.com/assets/pdf/DyPatil-Early-Salary-Cancellation-Form.pdf">Early Salary Cancellation Form</a></li><li><a href="https://cdn-websites.lmscontent.in/DYPATIL/www/wwwroot/dypatiledu.com/assets/pdf/DYP%20Propelled%20Cancellation%20Form.pdf">Propelled Cancellation Form</a></li></ul></details></nav>
+    </div>
+    <div class="ftr-bottom">
+      <p>© 2026 D Y Patil University. All rights reserved.</p>
+      <ul class="flegal"><li><a href="https://www.dypatiledu.com/about-us">About DYPU</a></li><li><a href="https://dypatiluniversityonline.com/pdf/compliance_of_mandatory_disclosure.pdf#toolbar=0">Mandatory Disclosure</a></li><li><a href="https://www.dypatiledu.com/dyp-privacy-policy">Privacy Policy</a></li></ul>
+      <p class="fdisc">dypatiledu.com is owned by dypatil.edu</p>
+    </div>
   </div>
 </footer>
 
@@ -870,6 +995,12 @@ form.lead .ok{background:#e8f5ec;color:#1b6b3a;border-radius:12px;padding:12px 1
     ph.addEventListener('input',function(){var v=ph.value.replace(/\D/g,'').slice(0,10);if(v!==ph.value)ph.value=v;});
     f.addEventListener('input',upd);f.addEventListener('change',upd);upd();
   });
+
+  // footer link groups: open on desktop, collapsed accordions on phones
+  var fq=window.matchMedia('(max-width:820px)');
+  function fsync(){$$('.fcol').forEach(function(d){d.open=!fq.matches;});}
+  fsync();if(fq.addEventListener)fq.addEventListener('change',fsync);
+  $$('.fcol summary').forEach(function(sm){sm.addEventListener('click',function(e){if(!fq.matches)e.preventDefault();});});
 
   // track simple link CTAs (e.g. brochure download)
   $$('[data-track]').forEach(function(a){a.addEventListener('click',function(){track(a.getAttribute('data-track'));});});
